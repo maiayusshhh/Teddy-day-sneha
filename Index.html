@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Teddy Day Snehaaaa 🧸</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Sacramento&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ff5f7e,#ff9a9e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  overflow:hidden;
+  transition:.5s;
+}
+
+.container{
+  text-align:center;
+  padding:30px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  border-radius:25px;
+  max-width:420px;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+h1{
+  font-family:'Pacifico',cursive;
+  font-size:2.5rem;
+}
+
+.click-note{
+  margin-top:10px;
+  font-size:.95rem;
+  opacity:.9;
+}
+
+.teddy{
+  font-size:4rem;
+  cursor:pointer;
+  margin:20px 0;
+  animation:float 2.5s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+
+.buttons button{
+  margin:10px;
+  padding:10px 25px;
+  border:none;
+  border-radius:50px;
+  font-size:1rem;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.yes{background:#fff;color:#ff4d6d}
+.no{background:#ffccd5;color:#a8002c}
+
+.love-letter{
+  display:none;
+  margin-top:20px;
+  animation:fade 1s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:scale(.8)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.special-line{
+  font-family:'Sacramento',cursive;
+  font-size:2rem;
+  margin-top:15px;
+}
+
+.sad{
+  background:linear-gradient(135deg,#555,#222);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎧 Background Music (local file) -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1>Hey Snehaaaa 🧸</h1>
+  <p id="question">Would you accept this teddy?</p>
+
+  <div class="teddy" id="teddy">🧸</div>
+  <div class="click-note">👆 Click the teddy again & again</div>
+
+  <div class="buttons">
+    <button class="yes" onclick="acceptYes()">Yes 💖</button>
+    <button class="no" onclick="acceptNo()">No 🙈</button>
+  </div>
+
+  <div class="love-letter" id="letter">
+    <p>
+      Dear Snehaaaa (Cappuccino ☕),<br><br>
+      This teddy is soft, warm, and always ready for hugs…  
+      just like the comfort you bring into my life 🧸💞
+    </p>
+
+    <div class="special-line">
+      Wishing the most Comfyy and Besteststst Teddyyyyy  
+      a Very Veryy Happy and the Happiest  
+      Teddyyy dayy Snehaaaa 🫶🏻💋🩷
+    </div>
+  </div>
+</div>
+
+<script>
+let clicks=0;
+let musicStarted=false;
+
+document.getElementById("teddy").addEventListener("click",()=>{
+  if(!musicStarted){
+    document.getElementById("bgMusic").play();
+    musicStarted=true;
+  }
+
+  clicks++;
+  if(clicks<=6){
+    const t=document.createElement("div");
+    t.innerHTML="🧸";
+    t.style.position="absolute";
+    t.style.left=Math.random()*100+"vw";
+    t.style.top="-10vh";
+    t.style.fontSize="3rem";
+    t.style.animation="fall 4s linear";
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(),4000);
+  }
+});
+
+function acceptNo(){
+  document.body.classList.add("sad");
+  document.getElementById("question").innerText=
+    "Aww 😢 Please select carefully… would you accept this teddy?";
+}
+
+function acceptYes(){
+  document.body.classList.remove("sad");
+  document.getElementById("letter").style.display="block";
+}
+</script>
+
+<style>
+@keyframes fall{
+  to{transform:translateY(120vh);opacity:0}
+}
+</style>
+
+</body>
+</html>
